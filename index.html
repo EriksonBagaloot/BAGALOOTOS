@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Bagalooten Official</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: url("bg.jpg") center/cover fixed;
+  color:white;
+  backdrop-filter: blur(2px);
+}
+
+.overlay {
+  background: rgba(0,0,0,0.75);
+  min-height:100vh;
+  padding:20px;
+}
+
+header {
+  text-align:center;
+  padding:30px;
+}
+
+header img {
+  width:150px;
+  animation: spin 10s linear infinite;
+}
+
+@keyframes spin {
+  0%{transform:rotate(0deg);}
+  100%{transform:rotate(360deg);}
+}
+
+h1 {
+  font-size:3rem;
+  color:#ffddb0;
+  text-shadow:0 0 20px #ff8800;
+}
+
+.lang {
+  text-align:right;
+}
+
+.lang button {
+  background:none;
+  border:none;
+  font-size:20px;
+  cursor:pointer;
+  margin:5px;
+}
+
+.container {
+  max-width:900px;
+  margin:auto;
+}
+
+.song {
+  background: rgba(255,255,255,0.05);
+  padding:15px;
+  border-radius:12px;
+  margin:10px 0;
+  border:1px solid rgba(255,200,100,0.2);
+}
+
+audio {
+  width:100%;
+}
+
+.controls button {
+  padding:10px 20px;
+  margin:5px;
+  border:none;
+  border-radius:20px;
+  background:#ff8800;
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.wave {
+  height:30px;
+  background: linear-gradient(90deg,#ff8800,#ffaa00);
+  animation: wave 1s infinite linear;
+}
+
+@keyframes wave {
+  0%{opacity:0.2;}
+  50%{opacity:1;}
+  100%{opacity:0.2;}
+}
+
+footer {
+  text-align:center;
+  margin-top:50px;
+  font-size:14px;
+  opacity:0.7;
+}
+
+a {
+  color:#ff8800;
+  text-decoration:none;
+  margin:10px;
+}
+
+</style>
+</head>
+
+<body oncontextmenu="return false">
+
+<div class="overlay">
+
+<div class="lang">
+<button onclick="setLang('de')">🇩🇪</button>
+<button onclick="setLang('en')">🇺🇸</button>
+<button onclick="setLang('es')">🇪🇸</button>
+</div>
+
+<header>
+<img src="logo.png">
+<h1>BAGALOOTEN</h1>
+<p id="subtitle">Los Muertos Bagalutos – Rap Collective</p>
+</header>
+
+<div class="container">
+
+<h2 id="aboutTitle">Wer sind die Bagalooten?</h2>
+<p id="aboutText">
+Wir sind die Bagalooten – auch bekannt als Los Muertos Bagalutos – ein Rap-Kollektiv aus Niedersachsen. 
+Unser Sound bewegt sich zwischen Rap-Vibes, Boom-Bap und Melodik Sound: roh, ehrlich und kompromisslos. 
+Ein Deutscher und ein Latino-Kolumbianer, ein Sound.
+</p>
+
+<h2>🎧 Music</h2>
+
+<div class="controls">
+<button onclick="playAll()">▶ Play All</button>
+<button onclick="shufflePlay()">🔀 Shuffle</button>
+</div>
+
+<div class="song">
+<b>One Thing (Prod. DFK Beats)</b>
+<div class="wave"></div>
+<audio class="track" src="https://res.cloudinary.com/dsw4wglet/video/upload/v1771341507/DFK_new_project_u1awo2.mp3"></audio>
+</div>
+
+<div class="song">
+<b>Cozy Couche</b>
+<div class="wave"></div>
+<audio class="track" src="https://res.cloudinary.com/dsw4wglet/video/upload/v1771340659/AAACOZYCOUCH_cjvk9p.mp3"></audio>
+</div>
+
+<div class="song">
+<b>Dont look back</b>
+<div class="wave"></div>
+<audio class="track" src="">https://res.cloudinary.com/dsw4wglet/video/upload/v1771373929/DONTLOOKBACK_1.1_jxbgpn.wav</audio>
+</div>
+
+<h2>💸 Donations</h2>
+<p>Coming Soon...</p>
+
+</div>
+
+<footer>
+<p>Follow Los Muertos Bagalutos</p>
+<a href="INSTAGRAM_LINK" target="_blank">Instagram</a>
+<a href="SOUNDCLOUD_LINK" target="_blank">SoundCloud</a>
+</footer>
+
+</div>
+
+<script>
+// Language System
+const texts = {
+de: {
+subtitle:"Los Muertos Bagalutos – Rap Collective",
+aboutTitle:"Wer sind die Bagalooten?",
+aboutText:"Wir sind die Bagalooten – auch bekannt als Los Muertos Bagalutos – ein Rap-Kollektiv aus Niedersachsen. Unser Sound bewegt sich zwischen Rap-Vibes, Boom-Bap und Melodik Sound: roh, ehrlich und kompromisslos. Ein Deutscher und ein Latino-Kolumbianer, ein Sound."
+},
+en: {
+subtitle:"Los Muertos Bagalutos – Rap Collective",
+aboutTitle:"Who are the Bagalooten?",
+aboutText:"We are the Bagalooten, also known as Los Muertos Bagalutos, a rap collective from Germany. Our sound blends rap vibes, boom bap and melodic flows – raw, honest and uncompromising. A German and a Colombian Latino creating one powerful sound."
+},
+es: {
+subtitle:"Los Muertos Bagalutos – Colectivo de Rap",
+aboutTitle:"¿Quiénes son los Bagalooten?",
+aboutText:"Somos los Bagalooten, también conocidos como Los Muertos Bagalutos, un colectivo de rap de Alemania. Nuestro sonido mezcla rap, boom bap y melodías crudas y honestas. Un alemán y un latino colombiano creando un solo sonido poderoso."
+}
+};
+
+function setLang(lang){
+document.getElementById("subtitle").innerText=texts[lang].subtitle;
+document.getElementById("aboutTitle").innerText=texts[lang].aboutTitle;
+document.getElementById("aboutText").innerText=texts[lang].aboutText;
+}
+
+// Player Functions
+let tracks = document.querySelectorAll(".track");
+
+function playAll(){
+tracks.forEach(t=>t.pause());
+let i=0;
+function playNext(){
+if(i<tracks.length){
+tracks[i].play();
+tracks[i].onended=()=>{i++;playNext();}
+}
+}
+playNext();
+}
+
+function shufflePlay(){
+tracks.forEach(t=>t.pause());
+let arr = Array.from(tracks);
+arr.sort(()=>Math.random()-0.5);
+arr[0].play();
+}
+
+// Hardcore Download Block
+document.addEventListener("keydown", function(e){
+if(e.ctrlKey && (e.key=="s"||e.key=="u"||e.key=="p")) {
+alert("Download blocked by Los Muertos Bagalutos.");
+e.preventDefault();
+}
+});
+</script>
+
+</body>
+</html>
